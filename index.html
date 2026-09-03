@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>FjellQ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="FjellQ – demnächst verfügbar. Kontakt: hej@fjellq.ch" />
+  <meta name="color-scheme" content="light dark" />
+
+  <meta property="og:title" content="FjellQ" />
+  <meta property="og:description" content="FjellQ – demnächst verfügbar." />
+  <meta property="og:image" content="assets/og-image.png" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+  <style>
+    @font-face {
+      font-family: 'Noto Sans Miao';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('assets/noto-sans-miao.woff2') format('woff2');
+    }
+
+    :root {
+      --bg: #f5f5f4;
+      --ink: #2b2b2b;
+      --ink-muted: #6c6f71;
+      --line: #d7d8d7;
+      --line-soft: #e7e7e6;
+      --focus: #2b2b2b;
+      --logo-filter: none;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #121313;
+        --ink: #ececea;
+        --ink-muted: #a3a5a3;
+        --line: #2c2d2c;
+        --line-soft: #1e1f1e;
+        --focus: #ececea;
+        --logo-filter: invert(1);
+      }
+    }
+
+    :root[data-theme="dark"] {
+      --bg: #121313;
+      --ink: #ececea;
+      --ink-muted: #a3a5a3;
+      --line: #2c2d2c;
+      --line-soft: #1e1f1e;
+      --focus: #ececea;
+      --logo-filter: invert(1);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Noto Sans Miao', -apple-system, 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+      transition: background 0.4s ease;
+    }
+
+    .contours-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 0;
+      transform-origin: 50% 50%;
+    }
+
+    .contours-bg svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: visible;
+    }
+
+    @keyframes terrainBreathe {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.9; transform: scale(1.035); }
+    }
+
+    @keyframes driftIndex {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-34px, 22px); }
+    }
+
+    @keyframes driftMinor {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(30px, -28px); }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .contours-bg {
+        animation: terrainBreathe 16s ease-in-out infinite;
+      }
+
+      .contours-bg .contour-index,
+      .contours-bg .contour-label {
+        animation: driftIndex 20s ease-in-out infinite;
+      }
+
+      .contours-bg .contour-minor {
+        animation: driftMinor 26s ease-in-out infinite;
+        animation-delay: -8s;
+      }
+    }
+
+    #progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: var(--ink);
+      z-index: 10;
+      transition: background 0.4s ease;
+    }
+
+    .hero-wrap {
+      position: relative;
+      height: 180vh;
+    }
+
+    .hero {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6vh 6vw;
+    }
+
+    .logo {
+      width: min(46vw, 46vh, 320px);
+      height: auto;
+      filter: var(--logo-filter);
+    }
+
+    .contact {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      text-align: center;
+      padding: 6vh 6vw;
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-muted);
+    }
+
+    .contact .copyright {
+      opacity: 0.75;
+      font-size: 0.72rem;
+    }
+
+    .contact a {
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 0.1em;
+      transition: border-color 0.2s ease;
+      font-size: 1rem;
+    }
+
+    .contact a:hover,
+    .contact a:focus-visible {
+      border-color: var(--ink-muted);
+    }
+
+    a { color: inherit; }
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    @media (orientation: landscape) and (max-height: 500px) {
+      .hero {
+        padding: 3vh 6vw;
+      }
+
+      .logo {
+        width: min(28vw, 34vh, 220px);
+      }
+    }
+
+    .scroll-hint {
+      position: absolute;
+      left: 50%;
+      bottom: 4vh;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.6rem;
+      height: 2.6rem;
+      border-radius: 50%;
+      border: none;
+      background: transparent;
+      color: var(--ink-muted);
+      cursor: pointer;
+      transition: color 0.2s ease, transform 0.2s ease;
+    }
+
+    .scroll-hint svg {
+      width: 1.4rem;
+      height: 1.4rem;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .scroll-hint:hover,
+    .scroll-hint:focus-visible {
+      color: var(--ink);
+      transform: translateX(-50%) translateY(3px);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .scroll-hint svg {
+        animation: bob 2.2s ease-in-out infinite;
+      }
+    }
+
+    @keyframes bob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+    }
+
+    @media (orientation: landscape) and (max-height: 500px) {
+      .scroll-hint {
+        bottom: 2vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="contours-bg" aria-hidden="true"></div>
+  <div id="progress" role="progressbar" aria-label="Lesefortschritt" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+  <div class="hero-wrap">
+    <section class="hero" id="hero">
+      <img class="logo" src="assets/logo.png" alt="FjellQ" />
+      <button class="scroll-hint" id="scrollHint" type="button" aria-label="Zum nächsten Abschnitt scrollen">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </button>
+    </section>
+  </div>
+
+  <section class="contact" id="contact">
+    <a href="mailto:hej@fjellq.ch">hej@fjellq.ch</a>
+    <a class="copyright" href="impressum.html">&copy; 2026 FjellQ</a>
+  </section>
+
+  <script src="assets/contours-loader.js"></script>
+  <script>
+  (function () {
+    var progress = document.getElementById('progress');
+    var heroWrap = document.querySelector('.hero-wrap');
+    var hero = document.getElementById('hero');
+    var ticking = false;
+
+    function update() {
+      var doc = document.documentElement;
+      var scrollTop = window.pageYOffset || doc.scrollTop;
+      var scrollRange = doc.scrollHeight - doc.clientHeight;
+      var pct = scrollRange > 0 ? Math.min(Math.max(scrollTop / scrollRange, 0), 1) : 0;
+      progress.style.width = (pct * 100) + '%';
+      progress.setAttribute('aria-valuenow', Math.round(pct * 100));
+
+      var fadeRange = heroWrap.offsetHeight - window.innerHeight;
+      var fadeProgress = fadeRange > 0 ? Math.min(Math.max(scrollTop / fadeRange, 0), 1) : 0;
+      hero.style.opacity = 1 - fadeProgress;
+
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    update();
+  })();
+
+  (function () {
+    var scrollHint = document.getElementById('scrollHint');
+    var contact = document.getElementById('contact');
+    if (!scrollHint || !contact) return;
+    scrollHint.addEventListener('click', function () {
+      contact.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  })();
+  </script>
+</body>
+</html>
