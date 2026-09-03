@@ -20,5 +20,5 @@ jobs:
           REMOTE_PORT: ${{ secrets.CYON_PORT }}
           TARGET: ${{ secrets.CYON_TARGET_PATH }}
           SOURCE: "./"
-          ARGS: "-rlztvO --delete"
+          ARGS: "-rlztvO --delete --mkpath"
           EXCLUDE: "/.git/, /.github/, /.gitignore, /scripts/, /README.md"
