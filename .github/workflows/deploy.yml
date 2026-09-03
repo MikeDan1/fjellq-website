@@ -12,8 +12,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Per rsync über SSH auf Cyon hochladen
-        uses: easingthemes/ssh-deploy@v5
-        env:
+        uses: easingthemes/ssh-deploy@v6
+        with:
           SSH_PRIVATE_KEY: ${{ secrets.CYON_SSH_KEY }}
           REMOTE_HOST: ${{ secrets.CYON_HOST }}
           REMOTE_USER: ${{ secrets.CYON_USER }}
