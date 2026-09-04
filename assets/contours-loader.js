@@ -15,7 +15,7 @@
   function load(format) {
     if (format === currentFormat) return;
     currentFormat = format;
-    fetch('assets/contours/set-' + setId + '-' + format + '.svg')
+    fetch('/assets/contours/set-' + setId + '-' + format + '.svg')
       .then(function (res) { return res.ok ? res.text() : Promise.reject(res.status); })
       .then(function (svgText) {
         if (currentFormat !== format) return; // inzwischen überholt
