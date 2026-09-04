@@ -1,0 +1,24 @@
+name: Deploy auf Cyon (Staging)
+
+on:
+  push:
+    branches: [staging]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code auschecken
+        uses: actions/checkout@v4
+
+      - name: Per rsync über SSH auf Cyon hochladen
+        uses: easingthemes/ssh-deploy@v6
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.CYON_SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.CYON_HOST }}
+          REMOTE_USER: ${{ secrets.CYON_USER }}
+          REMOTE_PORT: ${{ secrets.CYON_PORT }}
+          TARGET: ${{ secrets.CYON_STAGING_TARGET_PATH }}
+          SOURCE: "./"
+          ARGS: "-rlztvO --delete"
+          EXCLUDE: "/.git/, /.github/, /.gitignore, /scripts/, /README.md"
