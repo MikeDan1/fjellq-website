@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /impressum.html
+
+Sitemap: https://fjellq.ch/sitemap.xml

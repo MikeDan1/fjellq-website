@@ -4,17 +4,38 @@
   <meta charset="UTF-8" />
   <title>FjellQ</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="FjellQ – demnächst verfügbar. Kontakt: hej@fjellq.ch" />
+  <meta name="description" content="FjellQ – Prozessberatung und Digitalisierung für das Bildungswesen. Demnächst verfügbar." />
   <meta name="color-scheme" content="light dark" />
 
   <meta property="og:title" content="FjellQ" />
-  <meta property="og:description" content="FjellQ – demnächst verfügbar." />
-  <meta property="og:image" content="assets/og-image.png" />
+  <meta property="og:description" content="Prozessberatung und Digitalisierung für das Bildungswesen." />
+  <meta property="og:image" content="https://fjellq.ch/assets/og-image.png" />
+  <meta property="og:url" content="https://fjellq.ch/" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary" />
 
+  <link rel="canonical" href="https://fjellq.ch/" />
+
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "FjellQ",
+    "url": "https://fjellq.ch/",
+    "email": "hej@fjellq.ch",
+    "description": "Prozessberatung und Digitalisierung für das Bildungswesen.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Alte Seefeldstrasse 74",
+      "postalCode": "8616",
+      "addressLocality": "Riedikon",
+      "addressCountry": "CH"
+    }
+  }
+  </script>
 
   <style>
     @font-face {
@@ -142,8 +163,10 @@
       z-index: 1;
       height: 100vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      gap: 1.4rem;
       padding: 6vh 6vw;
     }
 
@@ -151,6 +174,15 @@
       width: min(46vw, 46vh, 320px);
       height: auto;
       filter: var(--logo-filter);
+    }
+
+    .claim {
+      margin: 0;
+      max-width: 28rem;
+      text-align: center;
+      font-size: 0.9rem;
+      letter-spacing: 0.03em;
+      color: var(--ink-muted);
     }
 
     .contact {
@@ -261,7 +293,8 @@
 
   <div class="hero-wrap">
     <section class="hero" id="hero">
-      <img class="logo" src="assets/logo.png" alt="FjellQ" />
+      <img class="logo" src="assets/logo.png" alt="FjellQ" width="862" height="604" />
+      <p class="claim">Prozessberatung und Digitalisierung für das Bildungswesen.</p>
       <button class="scroll-hint" id="scrollHint" type="button" aria-label="Zum nächsten Abschnitt scrollen">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M6 9l6 6 6-6" />
