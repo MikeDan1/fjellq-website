@@ -163,10 +163,8 @@
       z-index: 1;
       height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 1.4rem;
       padding: 6vh 6vw;
     }
 
@@ -176,13 +174,24 @@
       filter: var(--logo-filter);
     }
 
+    .claim-section {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6vh 6vw;
+    }
+
     .claim {
       margin: 0;
       max-width: 28rem;
       text-align: center;
-      font-size: 0.9rem;
-      letter-spacing: 0.03em;
-      color: var(--ink-muted);
+      font-size: 1.15rem;
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+      color: var(--ink);
     }
 
     .contact {
@@ -294,14 +303,22 @@
   <div class="hero-wrap">
     <section class="hero" id="hero">
       <img class="logo" src="assets/logo.png" alt="FjellQ" width="862" height="604" />
-      <p class="claim">Prozessberatung und Digitalisierung für das Bildungswesen.</p>
-      <button class="scroll-hint" id="scrollHint" type="button" aria-label="Zum nächsten Abschnitt scrollen">
+      <button class="scroll-hint" type="button" data-target="#claim" aria-label="Zum nächsten Abschnitt scrollen">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M6 9l6 6 6-6" />
         </svg>
       </button>
     </section>
   </div>
+
+  <section class="claim-section" id="claim">
+    <p class="claim">Prozessberatung und Digitalisierung für das Bildungswesen.</p>
+    <button class="scroll-hint" type="button" data-target="#contact" aria-label="Zum nächsten Abschnitt scrollen">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M6 9l6 6 6-6" />
+      </svg>
+    </button>
+  </section>
 
   <section class="contact" id="contact">
     <a href="mailto:hej@fjellq.ch">hej@fjellq.ch</a>
@@ -344,11 +361,13 @@
   })();
 
   (function () {
-    var scrollHint = document.getElementById('scrollHint');
-    var contact = document.getElementById('contact');
-    if (!scrollHint || !contact) return;
-    scrollHint.addEventListener('click', function () {
-      contact.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    var scrollHints = document.querySelectorAll('.scroll-hint');
+    scrollHints.forEach(function (hint) {
+      var target = document.querySelector(hint.dataset.target);
+      if (!target) return;
+      hint.addEventListener('click', function () {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
     });
   })();
   </script>
