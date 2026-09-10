@@ -248,7 +248,7 @@ a { color: inherit; }
 
 .process-point {
   position: absolute;
-  width: 6%;
+  width: 3.6%;
   aspect-ratio: 1;
   transform: translate(-50%, -50%);
   border-radius: 50%;
@@ -257,14 +257,13 @@ a { color: inherit; }
   padding: 0;
   margin: 0;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  transition: border-color 0.2s ease;
 }
 
 .process-point:hover,
 .process-point:focus-visible,
 .process-point.active {
   border-color: var(--ink);
-  background: var(--line-soft);
 }
 
 .process-steps {
