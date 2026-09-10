@@ -289,6 +289,13 @@ a { color: inherit; }
   color: var(--ink-muted);
 }
 
+.claim-illustration {
+  width: 100%;
+  max-width: 44rem;
+  height: auto;
+  margin-top: 0.8rem;
+}
+
 .process {
   position: relative;
   z-index: 1;
