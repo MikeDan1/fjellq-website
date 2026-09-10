@@ -54,15 +54,15 @@
 
   <nav class="section-nav" aria-label="Page navigation">
     <button class="section-dot" type="button" data-target="#hero" aria-label="Start"></button>
-    <button class="section-dot" type="button" data-target="#claim" aria-label="Approach"></button>
-    <button class="section-dot" type="button" data-target="#process" aria-label="Process"></button>
+    <button class="section-dot" type="button" data-target="#claim" aria-label="Approach" hidden></button>
+    <button class="section-dot" type="button" data-target="#process" aria-label="Process" hidden></button>
     <button class="section-dot" type="button" data-target="#contact" aria-label="Contact"></button>
   </nav>
 
   <div class="hero-wrap">
     <section class="hero" id="hero">
       <img class="logo" src="../assets/logo.png" alt="FjellQ" width="862" height="604" />
-      <button class="scroll-hint" type="button" data-target="#claim" aria-label="Scroll to next section">
+      <button class="scroll-hint" type="button" data-target="#contact" aria-label="Scroll to next section">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M6 9l6 6 6-6" />
         </svg>
@@ -70,7 +70,7 @@
     </section>
   </div>
 
-  <section class="claim-section" id="claim">
+  <section class="claim-section" id="claim" hidden>
     <p class="claim">Understand processes, shape digitalization.</p>
     <p class="claim-description">FjellQ advises and supports organizations and companies in digitalizing and optimizing their processes – from analysis to implementation. At the core is a sustainable approach that reduces complexity and creates solutions built to last.</p>
     <button class="scroll-hint" type="button" data-target="#process" aria-label="Scroll to next section">
@@ -80,7 +80,7 @@
     </button>
   </section>
 
-  <section class="process" id="process">
+  <section class="process" id="process" hidden>
     <h2 class="process-title">Our Process</h2>
     <div class="process-map-wrap">
       <img class="process-map" src="../assets/process-map.png" alt="Illustrated mountain trail with seven stages, symbolizing our consulting process" width="1536" height="1024" loading="lazy" />
