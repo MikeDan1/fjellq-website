@@ -148,23 +148,35 @@ a { color: inherit; }
 
 .section-nav {
   position: fixed;
-  right: 1.6rem;
+  right: 1.8rem;
   top: 50%;
   transform: translateY(-50%);
   z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.9rem;
+  gap: 1.1rem;
+  padding: 1.1rem 0.6rem;
+}
+
+.section-nav::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: var(--line);
+  z-index: -1;
 }
 
 .section-dot {
   position: relative;
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 0.7rem;
+  height: 0.7rem;
   border-radius: 50%;
-  border: 1px solid var(--line);
-  background: transparent;
+  border: 1px solid var(--ink-muted);
+  background: var(--bg);
   padding: 0;
   margin: 0;
   cursor: pointer;
