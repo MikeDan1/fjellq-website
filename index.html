@@ -154,7 +154,11 @@
       var target = document.querySelector(dot.dataset.target);
       if (!target) return;
       dot.addEventListener('click', function () {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (target.id === 'hero') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       });
     });
 
