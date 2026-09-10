@@ -159,6 +159,7 @@ a { color: inherit; }
 }
 
 .section-dot {
+  position: relative;
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 50%;
@@ -170,9 +171,30 @@ a { color: inherit; }
   transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
+.section-dot::after {
+  content: attr(aria-label);
+  position: absolute;
+  right: 1.1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
 .section-dot:hover,
 .section-dot:focus-visible {
   border-color: var(--ink);
+}
+
+.section-dot:hover::after,
+.section-dot:focus-visible::after {
+  opacity: 1;
 }
 
 .section-dot.active {
