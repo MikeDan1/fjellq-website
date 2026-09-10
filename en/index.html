@@ -52,6 +52,13 @@
     <span class="current" aria-current="true">EN</span>
   </nav>
 
+  <nav class="section-nav" aria-label="Page navigation">
+    <button class="section-dot" type="button" data-target="#hero" aria-label="Start"></button>
+    <button class="section-dot" type="button" data-target="#claim" aria-label="Approach"></button>
+    <button class="section-dot" type="button" data-target="#process" aria-label="Process"></button>
+    <button class="section-dot" type="button" data-target="#contact" aria-label="Contact"></button>
+  </nav>
+
   <div class="hero-wrap">
     <section class="hero" id="hero">
       <img class="logo" src="../assets/logo.png" alt="FjellQ" width="862" height="604" />
@@ -137,6 +144,34 @@
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
+  })();
+
+  (function () {
+    var dots = document.querySelectorAll('.section-dot');
+    if (!dots.length) return;
+
+    dots.forEach(function (dot) {
+      var target = document.querySelector(dot.dataset.target);
+      if (!target) return;
+      dot.addEventListener('click', function () {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          var dot = document.querySelector('.section-dot[data-target="#' + entry.target.id + '"]');
+          if (!dot) return;
+          dot.classList.toggle('active', entry.isIntersecting);
+        });
+      }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+
+      dots.forEach(function (dot) {
+        var target = document.querySelector(dot.dataset.target);
+        if (target) observer.observe(target);
+      });
+    }
   })();
 
   (function () {
