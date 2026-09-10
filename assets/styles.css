@@ -246,24 +246,6 @@ a { color: inherit; }
   border-radius: 0.5rem;
 }
 
-.process-path-progress {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-.process-segment {
-  fill: none;
-  stroke: #4a5654;
-  stroke-width: 12;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  opacity: 0.84;
-  transition: stroke-dashoffset 0.9s ease;
-}
-
 .process-point {
   position: absolute;
   width: 3.6%;
@@ -282,54 +264,6 @@ a { color: inherit; }
 .process-point:focus-visible,
 .process-point.active {
   border-color: var(--ink);
-}
-
-.process-steps {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.75rem 1.75rem;
-  max-width: 46rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.step-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-  border: none;
-  background: transparent;
-  padding: 0;
-  margin: 0;
-  font: inherit;
-  font-size: 0.9rem;
-  letter-spacing: 0.01em;
-  color: var(--ink);
-  cursor: pointer;
-}
-
-.step-number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  width: 1.6rem;
-  height: 1.6rem;
-  border-radius: 50%;
-  border: 1px solid var(--line);
-  font-size: 0.75rem;
-  color: var(--ink-muted);
-  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-}
-
-.step-btn:hover .step-number,
-.step-btn:focus-visible .step-number,
-.step-btn.active .step-number {
-  border-color: var(--ink);
-  background: var(--ink);
-  color: var(--bg);
 }
 
 .process-text {
