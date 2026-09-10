@@ -233,11 +233,38 @@ a { color: inherit; }
   color: var(--ink-muted);
 }
 
-.process-map {
+.process-map-wrap {
+  position: relative;
   width: 100%;
   max-width: 48rem;
+}
+
+.process-map {
+  display: block;
+  width: 100%;
   height: auto;
   border-radius: 0.5rem;
+}
+
+.process-point {
+  position: absolute;
+  width: 6%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.process-point:hover,
+.process-point:focus-visible,
+.process-point.active {
+  border-color: var(--ink);
+  background: var(--line-soft);
 }
 
 .process-steps {
@@ -251,13 +278,19 @@ a { color: inherit; }
   list-style: none;
 }
 
-.process-steps li {
+.step-btn {
   display: flex;
   align-items: center;
   gap: 0.55rem;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font: inherit;
   font-size: 0.9rem;
   letter-spacing: 0.01em;
   color: var(--ink);
+  cursor: pointer;
 }
 
 .step-number {
@@ -271,6 +304,30 @@ a { color: inherit; }
   border: 1px solid var(--line);
   font-size: 0.75rem;
   color: var(--ink-muted);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.step-btn:hover .step-number,
+.step-btn:focus-visible .step-number,
+.step-btn.active .step-number {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--bg);
+}
+
+.process-text {
+  margin: 0;
+  max-width: 34rem;
+  min-height: 2.9rem;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  color: var(--ink-muted);
+}
+
+.process-text strong {
+  color: var(--ink);
+  font-weight: 600;
 }
 
 .contact {

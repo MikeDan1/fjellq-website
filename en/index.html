@@ -75,16 +75,26 @@
 
   <section class="process" id="process">
     <h2 class="process-title">Our Process</h2>
-    <img class="process-map" src="../assets/process-map.png" alt="Illustrated mountain trail with seven stages, symbolizing our consulting process" width="1536" height="1024" loading="lazy" />
+    <div class="process-map-wrap">
+      <img class="process-map" src="../assets/process-map.png" alt="Illustrated mountain trail with seven stages, symbolizing our consulting process" width="1536" height="1024" loading="lazy" />
+      <button class="process-point" type="button" style="left:7.1%; top:51.3%" data-step="1" aria-expanded="false" aria-controls="process-text" aria-label="Getting acquainted"></button>
+      <button class="process-point" type="button" style="left:26.3%; top:56.8%" data-step="2" aria-expanded="false" aria-controls="process-text" aria-label="Taking a close look"></button>
+      <button class="process-point" type="button" style="left:40.9%; top:41.5%" data-step="3" aria-expanded="false" aria-controls="process-text" aria-label="Thinking ahead"></button>
+      <button class="process-point" type="button" style="left:54.7%; top:32.3%" data-step="4" aria-expanded="false" aria-controls="process-text" aria-label="Planning"></button>
+      <button class="process-point" type="button" style="left:67.0%; top:46.3%" data-step="5" aria-expanded="false" aria-controls="process-text" aria-label="Getting started"></button>
+      <button class="process-point" type="button" style="left:80.8%; top:59.6%" data-step="6" aria-expanded="false" aria-controls="process-text" aria-label="Living it"></button>
+      <button class="process-point" type="button" style="left:93.3%; top:64.8%" data-step="7" aria-expanded="false" aria-controls="process-text" aria-label="Making it better"></button>
+    </div>
     <ol class="process-steps">
-      <li><span class="step-number">1</span><span class="step-label">Getting acquainted</span></li>
-      <li><span class="step-number">2</span><span class="step-label">Taking a close look</span></li>
-      <li><span class="step-number">3</span><span class="step-label">Thinking ahead</span></li>
-      <li><span class="step-number">4</span><span class="step-label">Planning</span></li>
-      <li><span class="step-number">5</span><span class="step-label">Getting started</span></li>
-      <li><span class="step-number">6</span><span class="step-label">Living it</span></li>
-      <li><span class="step-number">7</span><span class="step-label">Making it better</span></li>
+      <li><button class="step-btn" type="button" data-step="1" aria-expanded="false" aria-controls="process-text"><span class="step-number">1</span><span class="step-label">Getting acquainted</span></button></li>
+      <li><button class="step-btn" type="button" data-step="2" aria-expanded="false" aria-controls="process-text"><span class="step-number">2</span><span class="step-label">Taking a close look</span></button></li>
+      <li><button class="step-btn" type="button" data-step="3" aria-expanded="false" aria-controls="process-text"><span class="step-number">3</span><span class="step-label">Thinking ahead</span></button></li>
+      <li><button class="step-btn" type="button" data-step="4" aria-expanded="false" aria-controls="process-text"><span class="step-number">4</span><span class="step-label">Planning</span></button></li>
+      <li><button class="step-btn" type="button" data-step="5" aria-expanded="false" aria-controls="process-text"><span class="step-number">5</span><span class="step-label">Getting started</span></button></li>
+      <li><button class="step-btn" type="button" data-step="6" aria-expanded="false" aria-controls="process-text"><span class="step-number">6</span><span class="step-label">Living it</span></button></li>
+      <li><button class="step-btn" type="button" data-step="7" aria-expanded="false" aria-controls="process-text"><span class="step-number">7</span><span class="step-label">Making it better</span></button></li>
     </ol>
+    <p class="process-text" id="process-text" aria-live="polite">Click a point on the map or a step to learn more.</p>
   </section>
 
   <section class="contact" id="contact">
@@ -134,6 +144,38 @@
       if (!target) return;
       hint.addEventListener('click', function () {
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  })();
+
+  (function () {
+    var processText = document.getElementById('process-text');
+    if (!processText) return;
+
+    var steps = {
+      1: { label: 'Getting acquainted', text: 'We get to know your organization, your people, and your goals – the foundation for everything that follows.' },
+      2: { label: 'Taking a close look', text: 'We take a close look at how your processes actually work today.' },
+      3: { label: 'Thinking ahead', text: 'We consider tomorrow’s possibilities before designing solutions.' },
+      4: { label: 'Planning', text: 'We develop a clear, actionable concept for the next step.' },
+      5: { label: 'Getting started', text: 'We implement the concept together with you, step by step.' },
+      6: { label: 'Living it', text: 'The new processes become part of your everyday work – we support the rollout.' },
+      7: { label: 'Making it better', text: 'We review, learn, and keep improving.' }
+    };
+
+    var stepEls = document.querySelectorAll('[data-step]');
+    stepEls.forEach(function (el) {
+      el.addEventListener('click', function () {
+        var step = el.getAttribute('data-step');
+        var data = steps[step];
+        if (!data) return;
+
+        processText.innerHTML = '<strong>' + step + '. ' + data.label + '.</strong> ' + data.text;
+
+        stepEls.forEach(function (other) {
+          var isActive = other.getAttribute('data-step') === step;
+          other.classList.toggle('active', isActive);
+          other.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+        });
       });
     });
   })();
