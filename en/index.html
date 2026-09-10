@@ -54,8 +54,6 @@
 
   <nav class="section-nav" aria-label="Page navigation">
     <button class="section-dot" type="button" data-target="#hero" aria-label="Start"></button>
-    <button class="section-dot" type="button" data-target="#claim" aria-label="Approach" hidden></button>
-    <button class="section-dot" type="button" data-target="#process" aria-label="Process" hidden></button>
     <button class="section-dot" type="button" data-target="#contact" aria-label="Contact"></button>
   </nav>
 
@@ -69,31 +67,6 @@
       </button>
     </section>
   </div>
-
-  <section class="claim-section" id="claim" hidden>
-    <p class="claim">Understand processes, shape digitalization.</p>
-    <p class="claim-description">FjellQ advises and supports organizations and companies in digitalizing and optimizing their processes – from analysis to implementation. At the core is a sustainable approach that reduces complexity and creates solutions built to last.</p>
-    <button class="scroll-hint" type="button" data-target="#process" aria-label="Scroll to next section">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M6 9l6 6 6-6" />
-      </svg>
-    </button>
-  </section>
-
-  <section class="process" id="process" hidden>
-    <h2 class="process-title">Our Process</h2>
-    <div class="process-map-wrap">
-      <img class="process-map" src="../assets/process-map.png" alt="Illustrated mountain trail with seven stages, symbolizing our consulting process" width="1536" height="1024" loading="lazy" />
-      <button class="process-point" type="button" style="left:7.1%; top:51.3%" data-step="1" aria-expanded="false" aria-controls="process-text" aria-label="Getting acquainted"></button>
-      <button class="process-point" type="button" style="left:26.3%; top:56.8%" data-step="2" aria-expanded="false" aria-controls="process-text" aria-label="Taking a close look"></button>
-      <button class="process-point" type="button" style="left:40.9%; top:41.5%" data-step="3" aria-expanded="false" aria-controls="process-text" aria-label="Thinking ahead"></button>
-      <button class="process-point" type="button" style="left:54.7%; top:32.3%" data-step="4" aria-expanded="false" aria-controls="process-text" aria-label="Planning"></button>
-      <button class="process-point" type="button" style="left:67.0%; top:46.3%" data-step="5" aria-expanded="false" aria-controls="process-text" aria-label="Getting started"></button>
-      <button class="process-point" type="button" style="left:80.8%; top:59.6%" data-step="6" aria-expanded="false" aria-controls="process-text" aria-label="Living it"></button>
-      <button class="process-point" type="button" style="left:93.3%; top:64.8%" data-step="7" aria-expanded="false" aria-controls="process-text" aria-label="Making it better"></button>
-    </div>
-    <p class="process-text" id="process-text" aria-live="polite">Click a point on the map to learn more.</p>
-  </section>
 
   <section class="contact" id="contact">
     <a href="mailto:hej@fjellq.ch">hej@fjellq.ch</a>
@@ -176,39 +149,6 @@
         if (target) observer.observe(target);
       });
     }
-  })();
-
-  (function () {
-    var processText = document.getElementById('process-text');
-    if (!processText) return;
-
-    var steps = {
-      1: { label: 'Getting acquainted', text: 'We get to know your organization, your people, and your goals – the foundation for everything that follows.' },
-      2: { label: 'Taking a close look', text: 'We take a close look at how your processes actually work today.' },
-      3: { label: 'Thinking ahead', text: 'We consider tomorrow’s possibilities before designing solutions.' },
-      4: { label: 'Planning', text: 'We develop a clear, actionable concept for the next step.' },
-      5: { label: 'Getting started', text: 'We implement the concept together with you, step by step.' },
-      6: { label: 'Living it', text: 'The new processes become part of your everyday work – we support the rollout.' },
-      7: { label: 'Making it better', text: 'We review, learn, and keep improving.' }
-    };
-
-    var stepEls = document.querySelectorAll('[data-step]');
-
-    stepEls.forEach(function (el) {
-      el.addEventListener('click', function () {
-        var step = el.getAttribute('data-step');
-        var data = steps[step];
-        if (!data) return;
-
-        processText.innerHTML = '<strong>' + step + '. ' + data.label + '.</strong> ' + data.text;
-
-        stepEls.forEach(function (other) {
-          var isActive = other.getAttribute('data-step') === step;
-          other.classList.toggle('active', isActive);
-          other.setAttribute('aria-expanded', isActive ? 'true' : 'false');
-        });
-      });
-    });
   })();
   </script>
 </body>
