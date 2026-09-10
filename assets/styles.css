@@ -246,6 +246,28 @@ a { color: inherit; }
   border-radius: 0.5rem;
 }
 
+.process-path-progress {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.process-segment {
+  fill: none;
+  stroke: #8f9a93;
+  stroke-width: 34;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+.process-segment.revealed {
+  opacity: 0.9;
+}
+
 .process-point {
   position: absolute;
   width: 3.6%;
