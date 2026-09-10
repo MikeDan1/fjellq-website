@@ -257,15 +257,11 @@ a { color: inherit; }
 .process-segment {
   fill: none;
   stroke: #8f9a93;
-  stroke-width: 34;
+  stroke-width: 12;
   stroke-linecap: round;
   stroke-linejoin: round;
-  opacity: 0;
-  transition: opacity 0.9s ease;
-}
-
-.process-segment.revealed {
   opacity: 0.9;
+  transition: stroke-dashoffset 0.9s ease;
 }
 
 .process-point {

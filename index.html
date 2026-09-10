@@ -172,6 +172,26 @@
 
     var stepEls = document.querySelectorAll('[data-step]');
     var segmentEls = document.querySelectorAll('.process-segment');
+    var segLengths = [];
+    var cumLengths = [0];
+    segmentEls.forEach(function (seg) {
+      var len = seg.getTotalLength();
+      segLengths.push(len);
+      seg.style.strokeDasharray = len;
+      seg.style.strokeDashoffset = len;
+      cumLengths.push(cumLengths[cumLengths.length - 1] + len);
+    });
+
+    function revealUpToStep(step) {
+      var target = cumLengths[step - 1];
+      segmentEls.forEach(function (seg, i) {
+        var segStart = cumLengths[i];
+        var segLen = segLengths[i];
+        var offset = Math.min(Math.max(segStart + segLen - target, 0), segLen);
+        seg.style.strokeDashoffset = offset;
+      });
+    }
+
     stepEls.forEach(function (el) {
       el.addEventListener('click', function () {
         var step = el.getAttribute('data-step');
@@ -186,10 +206,7 @@
           other.setAttribute('aria-expanded', isActive ? 'true' : 'false');
         });
 
-        segmentEls.forEach(function (seg) {
-          var segIndex = parseInt(seg.getAttribute('data-segment'), 10);
-          seg.classList.toggle('revealed', segIndex < parseInt(step, 10));
-        });
+        revealUpToStep(parseInt(step, 10));
       });
     });
   })();
