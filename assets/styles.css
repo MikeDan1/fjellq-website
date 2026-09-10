@@ -256,11 +256,11 @@ a { color: inherit; }
 
 .process-segment {
   fill: none;
-  stroke: #8f9a93;
+  stroke: #4a5654;
   stroke-width: 12;
   stroke-linecap: round;
   stroke-linejoin: round;
-  opacity: 0.9;
+  opacity: 0.84;
   transition: stroke-dashoffset 0.9s ease;
 }
 
