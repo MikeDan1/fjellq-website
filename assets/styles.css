@@ -108,42 +108,6 @@ a { color: inherit; }
   }
 }
 
-/* Sprachumschalter */
-
-.lang-switch {
-  position: fixed;
-  top: 1.6rem;
-  right: 1.6rem;
-  z-index: 5;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.lang-switch .sep {
-  color: var(--line);
-}
-
-.lang-switch a,
-.lang-switch span {
-  text-decoration: none;
-  color: var(--ink-muted);
-  padding-bottom: 0.15em;
-}
-
-.lang-switch a:hover,
-.lang-switch a:focus-visible {
-  color: var(--ink);
-}
-
-.lang-switch .current {
-  color: var(--ink);
-  border-bottom: 1px solid var(--ink);
-}
-
 /* Seitennavigation */
 
 .section-nav {
