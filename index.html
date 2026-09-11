@@ -105,17 +105,52 @@
       <div class="process-wheel-mask">
         <ul class="process-wheel" id="process-wheel">
           <li aria-hidden="true"></li>
-          <li><button type="button" class="process-wheel-item" data-step="1" aria-expanded="false" aria-controls="process-text">1. Kennenlernen</button></li>
-          <li><button type="button" class="process-wheel-item" data-step="2" aria-expanded="false" aria-controls="process-text">2. Hinschauen</button></li>
-          <li><button type="button" class="process-wheel-item" data-step="3" aria-expanded="false" aria-controls="process-text">3. Vorausdenken</button></li>
-          <li><button type="button" class="process-wheel-item" data-step="4" aria-expanded="false" aria-controls="process-text">4. Planen</button></li>
-          <li><button type="button" class="process-wheel-item" data-step="5" aria-expanded="false" aria-controls="process-text">5. Loslegen</button></li>
-          <li><button type="button" class="process-wheel-item" data-step="6" aria-expanded="false" aria-controls="process-text">6. Leben</button></li>
-          <li><button type="button" class="process-wheel-item" data-step="7" aria-expanded="false" aria-controls="process-text">7. Besser machen</button></li>
+          <li>
+            <button type="button" class="process-wheel-item" data-step="1" aria-expanded="false" aria-controls="process-text">
+              <span class="step-label">1. Kennenlernen</span>
+              <span class="step-desc">Wir lernen Ihre Organisation, Ihre Menschen und Ihre Ziele kennen – die Basis für alles Weitere.</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="process-wheel-item" data-step="2" aria-expanded="false" aria-controls="process-text">
+              <span class="step-label">2. Hinschauen</span>
+              <span class="step-desc">Wir schauen genau hin: Wie laufen Ihre Prozesse heute tatsächlich ab?</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="process-wheel-item" data-step="3" aria-expanded="false" aria-controls="process-text">
+              <span class="step-label">3. Vorausdenken</span>
+              <span class="step-desc">Wir denken die Möglichkeiten von morgen mit, bevor wir Lösungen entwerfen.</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="process-wheel-item" data-step="4" aria-expanded="false" aria-controls="process-text">
+              <span class="step-label">4. Planen</span>
+              <span class="step-desc">Wir erarbeiten ein klares, umsetzbares Konzept für den nächsten Schritt.</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="process-wheel-item" data-step="5" aria-expanded="false" aria-controls="process-text">
+              <span class="step-label">5. Loslegen</span>
+              <span class="step-desc">Wir setzen das Konzept gemeinsam mit Ihnen Schritt für Schritt um.</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="process-wheel-item" data-step="6" aria-expanded="false" aria-controls="process-text">
+              <span class="step-label">6. Leben</span>
+              <span class="step-desc">Die neuen Prozesse werden Teil Ihres Alltags – wir begleiten die Einführung.</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="process-wheel-item" data-step="7" aria-expanded="false" aria-controls="process-text">
+              <span class="step-label">7. Besser machen</span>
+              <span class="step-desc">Wir überprüfen, lernen und verbessern kontinuierlich weiter.</span>
+            </button>
+          </li>
           <li aria-hidden="true"></li>
         </ul>
       </div>
-      <p class="process-current" id="process-current" aria-live="polite">Klicke auf einen Punkt auf der Karte, um mehr zu erfahren.</p>
+      <p class="visually-hidden" id="process-announcement" aria-live="polite">Klicke auf einen Punkt auf der Karte, um mehr zu erfahren.</p>
     </div>
   </section>
 
@@ -214,14 +249,19 @@
   })();
 
   (function () {
-    var processCurrent = document.getElementById('process-current');
+    var announcement = document.getElementById('process-announcement');
     var wheel = document.getElementById('process-wheel');
-    if (!processCurrent || !wheel) return;
+    if (!announcement || !wheel) return;
 
     var wheelItems = wheel.querySelectorAll('li');
     var mask = wheel.parentElement;
     var rowHeight = wheelItems[0].offsetHeight;
     mask.style.height = (rowHeight * 3) + 'px';
+    wheelItems.forEach(function (li) {
+      if (li.querySelector('.process-wheel-item')) {
+        li.style.height = rowHeight + 'px';
+      }
+    });
 
     var steps = {
       1: { label: 'Kennenlernen', text: 'Wir lernen Ihre Organisation, Ihre Menschen und Ihre Ziele kennen – die Basis für alles Weitere.' },
@@ -240,13 +280,23 @@
       if (!data) return;
 
       var stepNum = parseInt(step, 10);
+      var currentLi = wheelItems[stepNum];
 
-      wheel.style.transform = 'translateY(' + (-(stepNum - 1) * rowHeight) + 'px)';
       wheelItems.forEach(function (li, i) {
+        if (i !== stepNum && li.querySelector('.process-wheel-item')) {
+          li.style.height = rowHeight + 'px';
+        }
         li.classList.toggle('is-current', i === stepNum);
       });
 
-      processCurrent.innerHTML = '<strong>' + step + '. ' + data.label + '.</strong> ' + data.text;
+      currentLi.style.height = 'auto';
+      var expandedHeight = currentLi.scrollHeight;
+      currentLi.style.height = expandedHeight + 'px';
+
+      mask.style.height = (rowHeight * 2 + expandedHeight) + 'px';
+      wheel.style.transform = 'translateY(' + (-(stepNum - 1) * rowHeight) + 'px)';
+
+      announcement.textContent = step + '. ' + data.label + '. ' + data.text;
 
       stepEls.forEach(function (other) {
         var isActive = other.getAttribute('data-step') === step;
@@ -260,6 +310,8 @@
         selectStep(el.getAttribute('data-step'));
       });
     });
+
+    selectStep('1');
   })();
   </script>
 </body>
