@@ -102,9 +102,20 @@
       <button class="process-point" type="button" style="left:93.3%; top:64.8%" data-step="7" aria-expanded="false" aria-controls="process-text" aria-label="Besser machen"></button>
     </div>
     <div class="process-carousel" id="process-text">
-      <p class="process-adjacent process-adjacent--prev" id="process-prev"></p>
+      <div class="process-wheel-mask" aria-hidden="true">
+        <ul class="process-wheel" id="process-wheel">
+          <li></li>
+          <li>1. Kennenlernen</li>
+          <li>2. Hinschauen</li>
+          <li>3. Vorausdenken</li>
+          <li>4. Planen</li>
+          <li>5. Loslegen</li>
+          <li>6. Leben</li>
+          <li>7. Besser machen</li>
+          <li></li>
+        </ul>
+      </div>
       <p class="process-current" id="process-current" aria-live="polite">Klicke auf einen Punkt auf der Karte, um mehr zu erfahren.</p>
-      <p class="process-adjacent process-adjacent--next" id="process-next"></p>
     </div>
   </section>
 
@@ -203,10 +214,14 @@
   })();
 
   (function () {
-    var processPrev = document.getElementById('process-prev');
     var processCurrent = document.getElementById('process-current');
-    var processNext = document.getElementById('process-next');
-    if (!processCurrent) return;
+    var wheel = document.getElementById('process-wheel');
+    if (!processCurrent || !wheel) return;
+
+    var wheelItems = wheel.querySelectorAll('li');
+    var mask = wheel.parentElement;
+    var rowHeight = wheelItems[0].offsetHeight;
+    mask.style.height = (rowHeight * 3) + 'px';
 
     var steps = {
       1: { label: 'Kennenlernen', text: 'Wir lernen Ihre Organisation, Ihre Menschen und Ihre Ziele kennen – die Basis für alles Weitere.' },
@@ -227,12 +242,13 @@
         if (!data) return;
 
         var stepNum = parseInt(step, 10);
-        var prevData = steps[stepNum - 1];
-        var nextData = steps[stepNum + 1];
 
-        processPrev.textContent = prevData ? (stepNum - 1) + '. ' + prevData.label : '';
+        wheel.style.transform = 'translateY(' + (-(stepNum - 1) * rowHeight) + 'px)';
+        wheelItems.forEach(function (li, i) {
+          li.classList.toggle('is-current', i === stepNum);
+        });
+
         processCurrent.innerHTML = '<strong>' + step + '. ' + data.label + '.</strong> ' + data.text;
-        processNext.textContent = nextData ? (stepNum + 1) + '. ' + nextData.label : '';
 
         stepEls.forEach(function (other) {
           var isActive = other.getAttribute('data-step') === step;

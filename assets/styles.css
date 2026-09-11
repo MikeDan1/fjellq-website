@@ -381,14 +381,37 @@ a { color: inherit; }
   text-align: center;
 }
 
-.process-adjacent {
+.process-wheel-mask {
+  width: 100%;
+  max-width: 16rem;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 35%, #000 65%, transparent 100%);
+}
+
+.process-wheel {
+  list-style: none;
   margin: 0;
-  min-height: 1.1rem;
+  padding: 0;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.process-wheel li {
+  height: 1.7rem;
+  line-height: 1.7rem;
+  text-align: center;
   font-size: 0.78rem;
   letter-spacing: 0.01em;
   color: var(--ink-muted);
   opacity: 0.45;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, color 0.3s ease, font-size 0.3s ease;
+}
+
+.process-wheel li.is-current {
+  opacity: 1;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 0.85rem;
 }
 
 .process-current {
