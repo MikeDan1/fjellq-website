@@ -22,6 +22,7 @@
 
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="preload" as="image" href="assets/logo.png" fetchpriority="high" />
   <link rel="stylesheet" href="assets/styles.css" />
 
   <script type="application/ld+json">
@@ -61,7 +62,7 @@
 
   <div class="hero-wrap">
     <section class="hero" id="hero">
-      <img class="logo" src="assets/logo.png" alt="FjellQ" width="862" height="604" />
+      <img class="logo" src="assets/logo.png" alt="FjellQ" width="862" height="604" fetchpriority="high" />
       <button class="scroll-hint" type="button" data-target="#claim" aria-label="Zum nächsten Abschnitt scrollen">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M6 9l6 6 6-6" />
@@ -73,7 +74,10 @@
   <section class="claim-section" id="claim">
     <p class="claim">Prozesse verstehen, Digitalisierung gestalten.</p>
     <p class="claim-description">FjellQ berät und begleitet Organisationen und Firmen bei der Digitalisierung und Optimierung ihrer Prozesse – von der Analyse bis zur Umsetzung. Im Zentrum steht ein nachhaltiger Ansatz, der Komplexität reduziert und langfristig tragfähige Lösungen schafft.</p>
-    <img class="claim-illustration" src="assets/service-path.png" alt="Illustrierter Weg von der Analyse über Konzept und Umsetzung zu nachhaltigen Lösungen, bis hin zu FjellQ" width="2172" height="724" loading="lazy" />
+    <picture>
+      <source srcset="assets/service-path.webp" type="image/webp" />
+      <img class="claim-illustration" src="assets/service-path.png" alt="Illustrierter Weg von der Analyse über Konzept und Umsetzung zu nachhaltigen Lösungen, bis hin zu FjellQ" width="2172" height="724" loading="lazy" />
+    </picture>
     <button class="scroll-hint" type="button" data-target="#process" aria-label="Zum nächsten Abschnitt scrollen">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M6 9l6 6 6-6" />
@@ -84,7 +88,10 @@
   <section class="process" id="process">
     <h2 class="process-title">Unser Prozess</h2>
     <div class="process-map-wrap">
-      <img class="process-map" src="assets/process-map.png" alt="Illustrierter Bergpfad mit sieben Etappen als Sinnbild für unseren Beratungsprozess" width="1536" height="1024" loading="lazy" />
+      <picture>
+        <source srcset="assets/process-map.webp" type="image/webp" />
+        <img class="process-map" src="assets/process-map.png" alt="Illustrierter Bergpfad mit sieben Etappen als Sinnbild für unseren Beratungsprozess" width="1536" height="1024" loading="lazy" />
+      </picture>
       <button class="process-point" type="button" style="left:7.1%; top:51.3%" data-step="1" aria-expanded="false" aria-controls="process-text" aria-label="Kennenlernen"></button>
       <button class="process-point" type="button" style="left:26.3%; top:56.8%" data-step="2" aria-expanded="false" aria-controls="process-text" aria-label="Hinschauen"></button>
       <button class="process-point" type="button" style="left:40.9%; top:41.5%" data-step="3" aria-expanded="false" aria-controls="process-text" aria-label="Vorausdenken"></button>
