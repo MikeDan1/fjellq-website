@@ -20,6 +20,7 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
   <link rel="preload" as="image" href="assets/logo.png" fetchpriority="high" />
+  <link rel="preload" as="font" href="assets/noto-sans-miao.woff2" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/styles.css" />
 
   <script type="application/ld+json">
@@ -102,7 +103,12 @@
 
   <section class="contact" id="contact">
     <a href="mailto:hej@fjellq.ch">hej@fjellq.ch</a>
-    <a class="copyright" href="impressum.html">&copy; 2026 FjellQ</a>
+    <nav class="legal-links" aria-label="Rechtliches">
+      <a href="impressum.html">Impressum</a>
+      <span class="sep">/</span>
+      <a href="datenschutz.html">Datenschutz</a>
+    </nav>
+    <span class="copyright">&copy; 2026 FjellQ</span>
   </section>
 
   <script src="assets/contours-loader.js"></script>

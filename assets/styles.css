@@ -501,3 +501,89 @@ main a:focus-visible {
   color: var(--ink-muted);
   align-self: flex-start;
 }
+
+.legal-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+}
+
+.legal-text p {
+  margin: 0;
+}
+
+.legal-text h2 {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+/* 404 */
+
+.page-404 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 6vh 6vw;
+  text-align: center;
+}
+
+.error-main {
+  position: relative;
+  z-index: 1;
+  max-width: 28rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.error-code {
+  margin: 0;
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--ink-muted);
+}
+
+.error-title {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
+.error-description {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--ink-muted);
+}
+
+.error-main .back {
+  align-self: center;
+  margin-top: 0.6rem;
+}
+
+/* Rechtliche Links im Footer */
+
+.legal-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  opacity: 0.75;
+}
+
+.legal-links a {
+  font-size: 0.72rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.legal-links .sep {
+  color: var(--line);
+}
