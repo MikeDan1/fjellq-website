@@ -102,17 +102,17 @@
       <button class="process-point" type="button" style="left:93.3%; top:64.8%" data-step="7" aria-expanded="false" aria-controls="process-text" aria-label="Besser machen"></button>
     </div>
     <div class="process-carousel" id="process-text">
-      <div class="process-wheel-mask" aria-hidden="true">
+      <div class="process-wheel-mask">
         <ul class="process-wheel" id="process-wheel">
-          <li></li>
-          <li>1. Kennenlernen</li>
-          <li>2. Hinschauen</li>
-          <li>3. Vorausdenken</li>
-          <li>4. Planen</li>
-          <li>5. Loslegen</li>
-          <li>6. Leben</li>
-          <li>7. Besser machen</li>
-          <li></li>
+          <li aria-hidden="true"></li>
+          <li><button type="button" class="process-wheel-item" data-step="1" aria-expanded="false" aria-controls="process-text">1. Kennenlernen</button></li>
+          <li><button type="button" class="process-wheel-item" data-step="2" aria-expanded="false" aria-controls="process-text">2. Hinschauen</button></li>
+          <li><button type="button" class="process-wheel-item" data-step="3" aria-expanded="false" aria-controls="process-text">3. Vorausdenken</button></li>
+          <li><button type="button" class="process-wheel-item" data-step="4" aria-expanded="false" aria-controls="process-text">4. Planen</button></li>
+          <li><button type="button" class="process-wheel-item" data-step="5" aria-expanded="false" aria-controls="process-text">5. Loslegen</button></li>
+          <li><button type="button" class="process-wheel-item" data-step="6" aria-expanded="false" aria-controls="process-text">6. Leben</button></li>
+          <li><button type="button" class="process-wheel-item" data-step="7" aria-expanded="false" aria-controls="process-text">7. Besser machen</button></li>
+          <li aria-hidden="true"></li>
         </ul>
       </div>
       <p class="process-current" id="process-current" aria-live="polite">Klicke auf einen Punkt auf der Karte, um mehr zu erfahren.</p>
@@ -235,26 +235,29 @@
 
     var stepEls = document.querySelectorAll('[data-step]');
 
+    function selectStep(step) {
+      var data = steps[step];
+      if (!data) return;
+
+      var stepNum = parseInt(step, 10);
+
+      wheel.style.transform = 'translateY(' + (-(stepNum - 1) * rowHeight) + 'px)';
+      wheelItems.forEach(function (li, i) {
+        li.classList.toggle('is-current', i === stepNum);
+      });
+
+      processCurrent.innerHTML = '<strong>' + step + '. ' + data.label + '.</strong> ' + data.text;
+
+      stepEls.forEach(function (other) {
+        var isActive = other.getAttribute('data-step') === step;
+        other.classList.toggle('active', isActive);
+        other.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+      });
+    }
+
     stepEls.forEach(function (el) {
       el.addEventListener('click', function () {
-        var step = el.getAttribute('data-step');
-        var data = steps[step];
-        if (!data) return;
-
-        var stepNum = parseInt(step, 10);
-
-        wheel.style.transform = 'translateY(' + (-(stepNum - 1) * rowHeight) + 'px)';
-        wheelItems.forEach(function (li, i) {
-          li.classList.toggle('is-current', i === stepNum);
-        });
-
-        processCurrent.innerHTML = '<strong>' + step + '. ' + data.label + '.</strong> ' + data.text;
-
-        stepEls.forEach(function (other) {
-          var isActive = other.getAttribute('data-step') === step;
-          other.classList.toggle('active', isActive);
-          other.setAttribute('aria-expanded', isActive ? 'true' : 'false');
-        });
+        selectStep(el.getAttribute('data-step'));
       });
     });
   })();
