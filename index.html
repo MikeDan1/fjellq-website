@@ -42,7 +42,10 @@
   </script>
 </head>
 <body>
-  <div class="contours-bg" aria-hidden="true"></div>
+  <div class="contours-parallax" aria-hidden="true">
+    <div class="contours-bg"></div>
+  </div>
+  <div class="grain-overlay" aria-hidden="true"></div>
   <div id="progress" role="progressbar" aria-label="Lesefortschritt" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
 
   <nav class="section-nav" aria-label="Seitennavigation">
@@ -117,6 +120,8 @@
     var progress = document.getElementById('progress');
     var heroWrap = document.querySelector('.hero-wrap');
     var hero = document.getElementById('hero');
+    var parallax = document.querySelector('.contours-parallax');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var ticking = false;
 
     function update() {
@@ -130,6 +135,10 @@
       var fadeRange = heroWrap.offsetHeight - window.innerHeight;
       var fadeProgress = fadeRange > 0 ? Math.min(Math.max(scrollTop / fadeRange, 0), 1) : 0;
       hero.style.opacity = 1 - fadeProgress;
+
+      if (parallax && !reduceMotion) {
+        parallax.style.transform = 'translateY(' + (-scrollTop * 0.04) + 'px)';
+      }
 
       ticking = false;
     }

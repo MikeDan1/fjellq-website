@@ -14,7 +14,10 @@
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body class="page-404">
-  <div class="contours-bg" aria-hidden="true"></div>
+  <div class="contours-parallax" aria-hidden="true">
+    <div class="contours-bg"></div>
+  </div>
+  <div class="grain-overlay" aria-hidden="true"></div>
 
   <main class="error-main">
     <p class="error-code">404</p>
@@ -24,5 +27,28 @@
   </main>
 
   <script src="assets/contours-loader.js"></script>
+  <script>
+  (function () {
+    var parallax = document.querySelector('.contours-parallax');
+    if (!parallax || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var ticking = false;
+
+    function update() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      parallax.style.transform = 'translateY(' + (-scrollTop * 0.04) + 'px)';
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    update();
+  })();
+  </script>
 </body>
 </html>
