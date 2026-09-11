@@ -253,11 +253,34 @@ a { color: inherit; }
   color: var(--ink-muted);
 }
 
-.claim-illustration {
+.claim-illustration-wrap {
+  position: relative;
   width: 100%;
   max-width: 44rem;
-  height: auto;
   margin-top: 0.8rem;
+}
+
+.claim-illustration {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.illustration-label {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  text-align: center;
+  white-space: nowrap;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  line-height: 1.25;
+  color: #06302d;
+  font-size: clamp(0.5rem, 1.55vw, 0.78rem);
+}
+
+.illustration-label--brand {
+  font-size: clamp(0.85rem, 2.6vw, 1.35rem);
 }
 
 .process {
